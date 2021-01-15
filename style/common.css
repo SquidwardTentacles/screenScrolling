@@ -1,0 +1,82 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+.pointer {
+  cursor: pointer;
+}
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flexbox.between {
+  justify-content: space-between;
+}
+.wh {
+  width: 100%;
+  height: 100%;
+}
+.vw {
+    width: 100vw;
+}
+.vh {
+    height: 100vh;
+}
+.vwh {
+    width: 100vw ;
+    height: 100vh;
+}
+.w {
+  width: 100%;
+}
+.h {
+  height: 100%;
+}
+.flexbox.a-start {
+  align-items: flex-start;
+}
+.flexbox.j-end {
+  justify-content: flex-end;
+}
+.flexbox.j-start {
+  justify-content: flex-start;
+}
+.flexbox.j-center {
+  justify-content: center;
+}
+.flexbox.a-start {
+  align-items: start;
+}
+.flexbox.a-end {
+  align-items: flex-end;
+}
+.flexbox.direction {
+  flex-direction: column;
+}
+.flexbox.wrap {
+  flex-wrap: wrap;
+}
+a {
+  text-decoration: none;
+}
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+input {
+  border: none;
+  outline: none;
+}
+li {
+  margin-bottom: 0;
+  list-style: none;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}

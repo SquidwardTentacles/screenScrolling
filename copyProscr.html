@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+            overflow: hidden;
+        }
+       #pageContainer{
+            position:relative;
+            top:0;
+            transition: all 1000ms ease;
+            touch-action:none;
+        }
+        .pageItem{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ddd;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="pageItem">1</div>
+        <div class="pageItem">2</div>
+        <div class="pageItem">3</div>
+    </div>
+</body>
+<script>
+        //获取整个对象
+        var container = document.getElementById("pageContainer");
+        //获取元素的高度,页面可视高度
+        var viewHeight = document.documentElement.clientHeight;
+        console.log(container)
+        //获取滚动的页数
+        console.log(document.getElementsByClassName("pageItem"))
+        var pageNum = document.getElementsByClassName("pageItem").length;
+        //初始化当前位置
+        var currentPosition = 0;
+        //设置页面高度
+        container.style.height = viewHeight + 'px';
+        // container.style.height = "height:"+viewHeight+'px'
+        
+        // 向上向下的操作
+        function goDown(){
+            if (currentPosition > -viewHeight * (pageNum - 1)) {
+                currentPosition = currentPosition - viewHeight;
+                container.style.top = currentPosition + 'px';
+                console.log(1234);
+            }
+        }
+    
+        function goUp(){
+            if (currentPosition < 0){
+                currentPosition = currentPosition + viewHeight;
+                container.style.top = currentPosition + "px"
+            }
+        }
+
+        //防止用户多次滚动的延时,使用到了闭包
+        function throttle(fn,delay){
+            let baseTime = 0;
+            return function(){
+                const currentTime= Date.now()
+                if (baseTime + delay < currentTime){
+                    fn.apply(this,arguments)
+                    baseTime = currentTime
+                }
+            }
+        }
+        // 绑定事件  fireFox 的滑动事件不同,做出区别
+        var handlerWheel = throttle(scrollMove,1000)
+        if(navigator.userAgent.toLowerCase().indexOf('fireFox') === -1){
+            document.addEventListener("mousewheel",handlerWheel)
+        }else{
+            document.addEventListener("DOMMouseScroll",hanlerWheel)
+        }
+        function scrollMove(e){
+            if(e.deltaY > 0){
+                console.log(e.deltaY)
+                goDown()
+            }else{
+                goUp()
+            }
+        }
+        </script>
+</html>
